@@ -1,0 +1,8 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "orchestrator": "./src/async_subagent_demo/orchestrator.py:graph",
+    "worker": "./src/async_subagent_demo/worker.py:graph"
+  }
+}
