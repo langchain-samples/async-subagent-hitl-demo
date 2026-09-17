@@ -1,0 +1,21 @@
+frontend/pnpm-lock.yaml
+  s_7dfa9d2e78d11f::t_e6a9a81b1ec045 1-721
+frontend/vite.config.ts
+  s_7dfa9d2e78d11f::t_6725593f8a8565 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b550d2dd25ae4b7998232d8e7c34a67dc64b029e",
+  "prompts": {},
+  "sessions": {
+    "s_7dfa9d2e78d11f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0a5e2-0d45-7db3-a567-09dfcec5e159",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Stephen Chu <stephen.chu@langchain.dev>"
+    }
+  }
+}
