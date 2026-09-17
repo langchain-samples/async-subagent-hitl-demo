@@ -4,7 +4,6 @@ Only model choices are mocked. Deep Agents and LangGraph still execute their
 real middleware, tools, checkpoints, threads, runs, interrupts, and resumes.
 """
 
-import json
 from collections.abc import Sequence
 from typing import Any, Literal
 
@@ -72,8 +71,9 @@ class DemoChatModel(BaseChatModel):
                         "name": "start_async_task",
                         "args": {
                             "description": (
-                                "Draft a one-sentence launch announcement, then call finalize_task "
-                                "with the draft so a human can review it."
+                                "Draft a product-launch announcement, then call "
+                                "publish_announcement for the company newsroom so a "
+                                "communications lead can review it."
                             ),
                             "subagent_type": "worker",
                         },
@@ -83,53 +83,20 @@ class DemoChatModel(BaseChatModel):
                 ],
             )
 
-        last_human_index = next(
-            (index for index in range(len(messages) - 1, -1, -1) if isinstance(messages[index], HumanMessage)),
-            -1,
-        )
-        last_human = messages[last_human_index] if last_human_index >= 0 else None
-        status_requested = isinstance(last_human, HumanMessage) and any(
-            word in str(last_human.content).lower() for word in ("check", "status", "poll")
-        )
-
-        if status_requested and launch_result is not None:
-            tool_call_id = f"check-worker-status-{human_turns}"
-            status_result = next(
-                (
-                    message
-                    for message in messages[last_human_index + 1 :]
-                    if isinstance(message, ToolMessage) and message.tool_call_id == tool_call_id
-                ),
-                None,
-            )
-            if status_result is None:
-                task_id = str(launch_result.content).split("task_id:", 1)[1].strip().split()[0]
-                return AIMessage(
-                    content="",
-                    tool_calls=[
-                        {
-                            "name": "check_worker_status",
-                            "args": {"task_id": task_id},
-                            "id": tool_call_id,
-                            "type": "tool_call",
-                        }
-                    ],
-                )
-
-            result = json.loads(str(status_result.content))
-            if result["status"] == "waiting_for_approval":
-                return AIMessage(
-                    content=(
-                        "I checked the worker directly. Status: waiting for approval. "
-                        f"Pending action: {result.get('pending_action') or 'unknown'}."
-                    )
-                )
-            return AIMessage(content=f"I checked the worker directly. Status: {result['status']}.")
-
         if human_turns > 1:
-            return AIMessage(content="Yes. I remain responsive while the worker is waiting for human review.")
+            return AIMessage(
+                content=(
+                    "Yes—I can keep coordinating the launch while the announcement writer "
+                    "waits for the communications lead's approval."
+                )
+            )
 
-        return AIMessage(content="The worker is running in the background. I can continue helping while it works.")
+        return AIMessage(
+            content=(
+                "The announcement writer is drafting the launch post in the background. "
+                "I can continue coordinating the launch while it works."
+            )
+        )
 
     @staticmethod
     def _worker_response(messages: list[BaseMessage]) -> AIMessage:
@@ -137,23 +104,24 @@ class DemoChatModel(BaseChatModel):
             (
                 message
                 for message in reversed(messages)
-                if isinstance(message, ToolMessage) and message.tool_call_id == "finalize-task-1"
+                if isinstance(message, ToolMessage) and message.tool_call_id == "publish-announcement-1"
             ),
             None,
         )
         if tool_result is not None:
-            return AIMessage(content=f"Worker finished after review. Tool result: {tool_result.content}")
+            return AIMessage(content=f"Announcement published after approval. {tool_result.content}")
 
         return AIMessage(
             content="",
             tool_calls=[
                 {
-                    "name": "finalize_task",
+                    "name": "publish_announcement",
                     "args": {
-                        "task_name": "launch announcement",
-                        "result": "The demo launches a delightfully small async-agent workflow.",
+                        "channel": "Company newsroom",
+                        "headline": "Product launch announcement",
+                        "body": "We are announcing the launch of our latest product today.",
                     },
-                    "id": "finalize-task-1",
+                    "id": "publish-announcement-1",
                     "type": "tool_call",
                 }
             ],

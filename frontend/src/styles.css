@@ -80,7 +80,7 @@ h3 { letter-spacing: -0.02em; }
   font: 500 11px ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 .server-status i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #40a66e; margin-right: 7px; box-shadow: 0 0 0 4px #e1f0e6; }
-.reset-button { border: 1px solid var(--line); background: white; color: var(--ink); padding: 8px 12px; border-radius: 9px; font-size: 12px; font-weight: 600; }
+.reset-button { border: 1px solid var(--line); background: white; color: var(--ink); padding: 8px 12px; border-radius: 9px; font-size: 12px; font-weight: 600; text-decoration: none; }
 .reset-button:hover { border-color: #a9aaa4; }
 
 .workspace {
@@ -107,9 +107,22 @@ h3 { letter-spacing: -0.02em; }
 .status-dot--active::before { background: #40a66e; box-shadow: 0 0 0 4px #e1f0e6; }
 .status-dot--attention { color: var(--amber); }
 .status-dot--attention::before { background: #e79b4e; box-shadow: 0 0 0 4px var(--amber-soft); animation: pulse 1.8s infinite; }
+.status-dot--error { color: var(--red); }
+.status-dot--error::before { background: var(--red); box-shadow: 0 0 0 4px #fae9e6; }
 
 .thread-meta { height: 44px; padding: 0 26px; display: flex; align-items: center; justify-content: space-between; background: #f5f4ef; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; }
 .thread-meta code { font: 500 10px ui-monospace, "SFMono-Regular", Menlo, monospace; color: #555d57; }
+
+.status-view {
+  margin: 20px 26px 0;
+  padding: 17px;
+  border: 1px solid #cdd8d1;
+  border-radius: 13px;
+  background: #f4f8f5;
+}
+.status-view__summary strong { display: block; margin-top: 3px; font-size: 14px; }
+.status-view__summary p { margin: 5px 0 0; max-width: 320px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.status-view__summary small { display: block; margin-top: 9px; color: #7f8882; font: 500 8px ui-monospace, "SFMono-Regular", Menlo, monospace; }
 
 .panel--chat { display: flex; flex-direction: column; }
 .messages { flex: 1; min-height: 425px; max-height: 470px; overflow-y: auto; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
@@ -137,10 +150,6 @@ h3 { letter-spacing: -0.02em; }
 .composer input:focus, .review-note input:focus, .code-editor:focus { border-color: #668978; box-shadow: 0 0 0 3px rgba(58, 114, 84, 0.1); }
 .composer button { border: 0; border-radius: 10px; background: var(--green); color: white; padding: 0 16px; font-size: 12px; font-weight: 700; }
 .composer button span { margin-left: 5px; }
-.responsive-hint { margin: 0 22px 14px; display: flex; align-items: center; justify-content: center; gap: 9px; color: var(--green); font-size: 10px; text-align: center; }
-.responsive-hint button { border: 1px solid #b8d0c2; border-radius: 8px; background: var(--green-soft); color: var(--green); padding: 6px 9px; font-size: 9px; font-weight: 700; }
-.responsive-hint button:hover { border-color: var(--green); }
-
 .panel--worker { padding-bottom: 24px; }
 .progress-list { list-style: none; margin: 0; padding: 22px 26px 18px; display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
 .progress-list li { position: relative; display: flex; gap: 9px; color: #8c918e; }
@@ -173,6 +182,18 @@ h3 { letter-spacing: -0.02em; }
 .decision--approve { order: -2; border-color: var(--green); background: var(--green); color: white; }
 .decision--reject { color: var(--red); border-color: #dfb5af; }
 .direct-note { margin: 11px 0 0; color: var(--muted); font: 400 9px ui-monospace, "SFMono-Regular", Menlo, monospace; }
+
+.review-handoff { margin: 22px 26px 0; padding: 17px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border: 1px solid #e3c49f; border-radius: 12px; background: #fffaf2; }
+.review-handoff strong { display: block; font-size: 12px; }
+.review-handoff p { margin: 4px 0 0; max-width: 270px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.review-handoff a { flex: 0 0 auto; border-radius: 9px; background: var(--ink); color: white; padding: 9px 11px; text-decoration: none; font-size: 9px; font-weight: 700; }
+
+.approval-workspace { width: min(760px, 92vw); margin: 36px auto; }
+.approval-context { margin-bottom: 18px; padding: 22px 26px; border: 1px solid var(--line); border-radius: 16px; background: rgba(251, 250, 246, 0.72); }
+.approval-context h2 { margin-top: 5px; }
+.approval-context > p { max-width: 540px; margin-bottom: 17px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.approval-context__thread { height: 40px; padding: 0 13px; border: 1px solid var(--line); border-radius: 9px; }
+.approval-workspace .panel { min-height: 580px; }
 
 .loading-card, .complete-card { margin: 22px 26px 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--muted); font-size: 12px; }
 .spinner { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border: 2px solid #c5d5cc; border-top-color: var(--green); border-radius: 50%; vertical-align: -2px; animation: spin 0.8s linear infinite; }
@@ -210,7 +231,10 @@ h3 { letter-spacing: -0.02em; }
   .workspace { width: calc(100% - 24px); margin: 18px auto; }
   .panel__header, .thread-meta { padding-left: 18px; padding-right: 18px; }
   .messages { padding: 18px; }
+  .status-view { margin-left: 18px; margin-right: 18px; }
   .progress-list { grid-template-columns: 1fr; gap: 13px; }
   .progress-list li::after { display: none; }
   .approval-card, .loading-card, .complete-card { margin-left: 18px; margin-right: 18px; }
+  .review-handoff { margin-left: 18px; margin-right: 18px; align-items: stretch; flex-direction: column; }
+  .review-handoff a { text-align: center; }
 }
