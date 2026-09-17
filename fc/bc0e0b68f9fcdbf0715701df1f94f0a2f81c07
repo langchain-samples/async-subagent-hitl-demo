@@ -1,0 +1,56 @@
+frontend/src/styles.css
+  s_7dfa9d2e78d11f::t_a8de9701246536 110-111,116-124,126
+  s_7dfa9d2e78d11f::t_28700a98140a17 83,186-197,238-239
+  s_7dfa9d2e78d11f::t_80a33b98c3d095 125,234
+scripts/smoke_test.py
+  s_7dfa9d2e78d11f::t_03df6f68950122 91,96
+  s_7dfa9d2e78d11f::t_50231eaad2805a 18,33,36,49-56,64-66,71,76-78,88,97,101,103-104
+src/async_subagent_demo/orchestrator.py
+  s_7dfa9d2e78d11f::t_a89253afefdfd6 1,17,20
+  s_7dfa9d2e78d11f::t_639254d56ee4b8 18-19
+  s_7dfa9d2e78d11f::t_03df6f68950122 11-12
+README.md
+  s_7dfa9d2e78d11f::t_7f7334eca16813 48,54-57
+  s_7dfa9d2e78d11f::t_a76dd5e6e0f62f 10,14-15,78-81
+  s_7dfa9d2e78d11f::t_03df6f68950122 50-53
+  s_7dfa9d2e78d11f::t_e182d19c1cbd05 7-8,39,67-72
+src/async_subagent_demo/mock_models.py
+  s_7dfa9d2e78d11f::t_639254d56ee4b8 74-76,96
+  s_7dfa9d2e78d11f::t_d6fa283a2cd0d5 87-92,94-95,97-99,107,112,118,120,124
+  s_7dfa9d2e78d11f::t_794ec096583bdb 121-122
+frontend/src/App.tsx
+  s_7dfa9d2e78d11f::t_ec1b09c9f96106 125-131,163,175-178,184,271-272,309-324,326
+  s_7dfa9d2e78d11f::t_59fa11c99aba89 36-46,55,62-63,73-108
+  s_7dfa9d2e78d11f::t_bde5c450a6906b 138-139,145,156-157,159,161-162,165-174,179-183,185-195,199-200,202-203,205
+  s_7dfa9d2e78d11f::t_f7e805019e98f4 140,146-148,164,238,241,252,254,256,258-259
+  s_7dfa9d2e78d11f::t_219984d02a8c32 119,280,286,300,308,331-332,352,371,376,402-403,409-410,481,494-495,511,524,547-548
+  s_7dfa9d2e78d11f::t_e97f7892986b5e 237,242-243,247,251,253,255,257,260-265,275,287-289,296,375,383,392
+  s_7dfa9d2e78d11f::t_61727756286d28 274,284-285,290-292,384
+  s_7dfa9d2e78d11f::t_28700a98140a17 304
+  s_7dfa9d2e78d11f::t_61bc33e75c429c 109,416-451,540,560-563,565
+  s_7dfa9d2e78d11f::t_639254d56ee4b8 457,480,512
+  s_7dfa9d2e78d11f::t_0d416de70ac5a3 459
+  s_7dfa9d2e78d11f::t_01287a9fe441c8 9,30-35,47-54,56-61
+  s_7dfa9d2e78d11f::t_94b1c904040557 554,558,564
+  s_7dfa9d2e78d11f::t_f7de86e3c32c26 110
+  s_7dfa9d2e78d11f::t_56e2618850ee8f 559
+src/async_subagent_demo/worker.py
+  s_7dfa9d2e78d11f::t_a89253afefdfd6 1,10-12,18,21-23
+  s_7dfa9d2e78d11f::t_639254d56ee4b8 19-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "fcbc0e0b68f9fcdbf0715701df1f94f0a2f81c07",
+  "prompts": {},
+  "sessions": {
+    "s_7dfa9d2e78d11f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0a5e2-0d45-7db3-a567-09dfcec5e159",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Stephen Chu <stephen.chu@langchain.dev>"
+    }
+  }
+}
